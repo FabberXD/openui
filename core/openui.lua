@@ -246,7 +246,7 @@ openui_manager.init = function(config)
 				local doNotSetValue = false
 				if key == "Position" or key == "LocalPosition" then
 					if type(value) == "Number2" then
-						self.values.Object.LocalPosition = ui:getNumber3(value, self.values.Object.LocalPosition.Z)
+						self.values.Object.LocalPosition = openui:getNumber3(value, self.values.Object.LocalPosition.Z)
 						return
 					end
 					self.values.Object.LocalPosition = value

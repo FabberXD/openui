@@ -116,7 +116,7 @@ openui_manager.init = function(config)
 	openui.getNumber2 = function(ui, number3)
 		return Number2(number3.X, number3.Y)
 	end
-
+	
 	openui.getNumber3 = function(ui, number2, z)
 		if z == nil then
 			z = 0
@@ -246,7 +246,7 @@ openui_manager.init = function(config)
 				local doNotSetValue = false
 				if key == "Position" or key == "LocalPosition" then
 					if type(value) == "Number2" then
-						self.values.Object.LocalPosition = openui:getNumber3(value, self.values.Object.LocalPosition.Z)
+						self.values.Object.LocalPosition = Number3(value.X, value.Y, self.values.Object.LocalPosition.Z)
 						return
 					end
 					self.values.Object.LocalPosition = value

@@ -746,12 +746,14 @@ openui_manager.init = function(config)
 				)
 
 				if check == true then
+					self.pointerIndex = pe.Index
 					self.Pressed = true
 					self:RefreshColors()
 					self:OnPress(pe)
 				end
 			end
 			self.pointerUpWrapper = function(_, pe)
+				if pe.Index ~= self.pointerIndex then return end
 				if self.Pressed == true then
 					local x = pe.X * Screen.Width
 					local y = pe.Y * Screen.Height
@@ -775,6 +777,7 @@ openui_manager.init = function(config)
 				end
 			end
 			self.pointerCancelWrapper = function(_, pe)
+				if pe.Index ~= self.pointerIndex then return end
 				if self.Pressed == true then
 					self.Pressed = false
 					self:RefreshColors()
@@ -782,6 +785,7 @@ openui_manager.init = function(config)
 				end
 			end
 			self.pointerDragWrapper = function(_, pe)
+				if pe.Index ~= self.pointerIndex then return end
 				if self.Pressed then
 					local x = pe.X * Screen.Width
 					local y = pe.Y * Screen.Height
@@ -797,6 +801,7 @@ openui_manager.init = function(config)
 				end
 			end
 
+			self.pointerIndex = nil
 			self.pointerDownListener = LocalEvent:Listen(LocalEvent.Name.PointerDown, function(pe)
 				self:pointerDownWrapper(pe)
 			end)
@@ -1306,7 +1311,7 @@ openui_manager.init = function(config)
 
 	--[[ Debug Warning ]]
 	if openui.debug then
-		print("[OPENUI]: Debug mode enabled (openui_Setup({debug=true})")
+		openui.Debug.Say("Debug mode enabled")
 	end
 
 	return openui

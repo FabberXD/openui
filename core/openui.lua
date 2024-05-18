@@ -12,6 +12,7 @@ openui_manager.init = function(config)
 	end
 	local defaultConfig = {
 		debug = false,
+		debugLevel = 0, -- 0: From messages, 1: From warns
 		cameraLayer = 11,
 		maxLayers = 500,
 		layerStep = -0.1,
@@ -26,6 +27,7 @@ openui_manager.init = function(config)
 
 	--[[ Config variables ]]
 	openui.debug = defaultConfig.debug
+	openui.debugLevel = defaultConfig.debugLevel
 	openui.cameraLayer = defaultConfig.cameraLayer
 	openui.maxLayers = defaultConfig.maxLayers
 	openui.layerStep = defaultConfig.layerStep
@@ -57,6 +59,19 @@ openui_manager.init = function(config)
 		Idle = "ButtonState:Idle",
 		Pressed = "ButtonState:Pressed",
 	}
+
+	--[[ Debug ]]
+	openui.Debug = {}
+	openui.Debug.Say = function(message)
+		if openui.debug ~= true then return end
+		if openui.debugLevel > 0 then return end
+		print("[OpenUI:Message] "..message)
+	end
+	openui.Debug.Warn = function(message)
+		if openui.debug ~= true then return end
+		if openui.debugLevel > 1 then return end
+		print("[OpenUI:Warning] "..message)
+	end
 
 	--[[ Utils ]]
 	openui.mergeConfigs = function(defaultConfig, config)

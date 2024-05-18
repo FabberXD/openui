@@ -18,7 +18,7 @@ local config = {
     debug = false, -- Enable debugging (optional)
     -- Other configuration options as needed
 }
-ui = openui_manager.init(config)
+openui = openui_manager.init(config)
 ```
 
 ### Creating UI Elements
@@ -26,7 +26,7 @@ ui = openui_manager.init(config)
 Here's a quick example of how to create a button:
 
 ```lua
-local button = openui_manager:TextButton("Click Me!", {
+local button = openui:TextButton("Click Me!", {
     color = Color(63, 63, 63),
     textColor = Color(255, 255, 255),
     -- Other settings
@@ -54,8 +54,8 @@ Each component can be customized with various parameters and supports event hand
 You can import your own nodes using ui:ImportNode function:
 
 ```lua
-ui:ImportNode("MyNode", myNode)
-ui:MyNode() -- Automaticly adds 'MyNode' as method to spawn your nodes
+openui:ImportNode("MyNode", myNode)
+openui:MyNode() -- Automaticly adds 'MyNode' as method to spawn your nodes
 ```
 
 ## Documentation
